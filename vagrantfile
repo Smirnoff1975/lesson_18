@@ -1,0 +1,48 @@
+ENV['VAGRANT_SERVER_URL'] = 'https://vagrant.elab.pro'
+
+# “ак как имеем проблему доступа к базе боксов на vagrantup.com, то указываем в качестве сервера источника российское зеркало
+
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/jammy64"
+    config.vm.hostname = "web-shell"
+
+# будем использовать образ ubuntu/jammy64, это ubuntu 22.04
+
+    config.vm.provider "virtualbox" do |vb|
+      vb.memory = 1024
+      vb.cpus = 2
+      vb.name = "test-vg"
+      vb.customize ['modifyvm', :id, '--audio', 'none']
+    end
+
+# дл€ VM выдел€ем 1√б ќ«” и 2 €дра, так же отключаем audio
+
+    config.vm.disk :disk, size: "1GB", name: "disk1"
+    config.vm.disk :disk, size: "1GB", name: "disk2"
+
+# ¬ машину дополнительно подключаем два диска по 1 √б каждый
+
+    config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+
+# пробрасываем порт 80 нашей машины на порт 8080 машины-хоста
+
+# Provisioning. «десь используем конструкцию shell и выполн€ем блок команд
+# —оздаем две папки дл€ монтировани€, определ€ем массив DISKS который содержит имен€ целевых дисков (у которых размер 1√б и точка монтировани€ пусто)
+# создаем массив DIRS (каталоги дл€ монтировани€ новых дисков) и в цикле по индексам DISKS провер€ем, если дл€ наших дисков нет UUID
+# то выполн€ем создание FS, после получем UUID диска в UUID1 и смотрим наличие дл€ него записи в /etc/fstab, если нет добавл€ем
+# (используем grep и конвейер), в конце все монтируем на основе записей в /etc/fstab
+
+    config.vm.provision "shell", inline: <<-SHELL
+    mkdir -p /mnt/data1 /mnt/data2
+
+    DISKS=($(lsblk -dno NAME,SIZE,MOUNTPOINT | awk '$2=="1G" && $3=="" {print "/dev/"$1}' | sort))
+    DIRS=("data1" "data2")
+    for i in "${!DISKS[@]}"; do
+     if ! blkid "${DISKS[i]}" >/dev/null 2>&1; then mkfs.ext4 -F "${DISKS[i]}"; fi
+     UUID1=$(blkid -s UUID -o value "${DISKS[i]}")
+     grep -q "$UUID1" /etc/fstab || echo "UUID=$UUID1 /mnt/${DIRS[i]} ext4 defaults 0 2" >> /etc/fstab
+    done
+    mount -a
+    SHELL
+
+end
