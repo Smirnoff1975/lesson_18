@@ -60,7 +60,7 @@ E:\Vagrant>dir
                1 файлов          2 044 байт
                3 папок  198 031 798 272 байт свободно
 ```
-> создал папку e:\vagrant, в ней создал файл vagrantfile (файл в приложении с комментариями )
+> создал папку e:\vagrant, в ней создал файл vagrantfile (файл в приложении с комментариями ), ниже уже не первый vagrant up, образ был уже скачан на этапе отладки ("vagrant_up_1_закачка образа.JPG")
 ```
 
 E:\Vagrant>vagrant up
@@ -132,7 +132,7 @@ Bringing machine 'default' up with 'virtualbox' provider...
     default: Writing superblocks and filesystem accounting information: done
     default:
 ```
-> первый запуск vagrant up приводит к созданию вм в VirtualBox на основе образа ubuntu/jammy64, в протоколе видим проброс портов 80:8080, добавление двух дисков и запуск блока команд провижин. Подключимся к вм через vagrant up и проверим результат.
+> запуск vagrant up приводит к созданию вм в VirtualBox на основе образа ubuntu/jammy64, в протоколе видим проброс портов 80:8080, добавление двух дисков и запуск блока команд провижин. Подключимся к вм через vagrant up и проверим результат.
 ```
 E:\Vagrant>vagrant ssh
 Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-71-generic x86_64)
