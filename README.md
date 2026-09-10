@@ -59,6 +59,9 @@ E:\Vagrant>dir
 10.09.2026  15:02             2 044 vagrantfile
                1 файлов          2 044 байт
                3 папок  198 031 798 272 байт свободно
+```
+> создал папку e:\vagrant, в ней создал файл vagrntfile (файл в приложении с комментариями )
+```
 
 E:\Vagrant>vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
