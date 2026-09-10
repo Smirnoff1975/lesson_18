@@ -185,7 +185,10 @@ tmpfs            97M  4.0K   97M   1% /run/user/1000
 vagrant@web-shell:~$
 vagrant@web-shell:~$ exit
 logout
+```
+> Проверил содержимое папки /mnt, изменение в /etc/fstab и результат монтирования. Далее погасим машину, запустим ее и проверим что нужные нам изменения сохранились.
 
+```
 E:\Vagrant>vagrant halt
 ==> default: Attempting graceful shutdown of VM...
 
@@ -226,29 +229,7 @@ Bringing machine 'default' up with 'virtualbox' provider...
 E:\Vagrant>vagrant ssh
 Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-71-generic x86_64)
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Thu Sep 10 12:15:28 UTC 2026
-
-  System load:             0.93359375
-  Usage of /:              3.7% of 38.70GB
-  Memory usage:            20%
-  Swap usage:              0%
-  Processes:               124
-  Users logged in:         0
-  IPv4 address for enp0s3: 10.0.2.15
-  IPv6 address for enp0s3: fd17:625c:f037:2:44:a4ff:fe14:4581
-
-
-Expanded Security Maintenance for Applications is not enabled.
-
-0 updates can be applied immediately.
-
-Enable ESM Apps to receive additional future security updates.
-See https://ubuntu.com/esm or run: sudo pro status
-
+...
 
 The list of available updates is more than a week old.
 To check for new updates run: sudo apt update
@@ -257,39 +238,7 @@ Run 'do-release-upgrade' to upgrade to it.
 
 
 Last login: Thu Sep 10 12:11:13 2026 from 10.0.2.2
-Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-71-generic x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Thu Sep 10 12:15:28 UTC 2026
-
-  System load:             0.93359375
-  Usage of /:              3.7% of 38.70GB
-  Memory usage:            20%
-  Swap usage:              0%
-  Processes:               124
-  Users logged in:         0
-  IPv4 address for enp0s3: 10.0.2.15
-  IPv6 address for enp0s3: fd17:625c:f037:2:44:a4ff:fe14:4581
-
-
-Expanded Security Maintenance for Applications is not enabled.
-
-0 updates can be applied immediately.
-
-Enable ESM Apps to receive additional future security updates.
-See https://ubuntu.com/esm or run: sudo pro status
-
-
-The list of available updates is more than a week old.
-To check for new updates run: sudo apt update
-New release '24.04.4 LTS' available.
-Run 'do-release-upgrade' to upgrade to it.
-
-
-Last login: Thu Sep 10 12:11:13 2026 from 10.0.2.2
+vagrant@web-shell:~$
 vagrant@web-shell:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 tmpfs            97M  956K   96M   1% /run
@@ -302,7 +251,9 @@ vagrant         688G  505G  183G  74% /vagrant
 tmpfs            97M  4.0K   97M   1% /run/user/1000
 vagrant@web-shell:~$ exit
 logout
-
+```
+> диски на месте, файловые структуры тоже, проверим что на хосту (Windows) кто-то слушает 8080
+```
 E:\Vagrant>netstat -ao | find "8080"
   TCP    127.0.0.1:8080         tex-home:0             LISTENING       8320
 
