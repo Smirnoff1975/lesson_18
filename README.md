@@ -131,7 +131,9 @@ Bringing machine 'default' up with 'virtualbox' provider...
     default: Creating journal (8192 blocks): done
     default: Writing superblocks and filesystem accounting information: done
     default:
-
+```
+> первый запуск vagrant up приводит к созданию вм в VirtualBox на основе образа ubuntu/jammy64, в протоколе видим проброс портов 80:8080, добавление двух дисков и запуск блока команд провижин. Подключимся к вм через vagrant up и проверим результат.
+```
 E:\Vagrant>vagrant ssh
 Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-71-generic x86_64)
 
@@ -150,29 +152,7 @@ Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-71-generic x86_64)
   IPv4 address for enp0s3: 10.0.2.15
 Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.0-71-generic x86_64)
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Thu Sep 10 12:11:12 UTC 2026
-
-  System load:             0.07666015625
-  Usage of /:              3.7% of 38.70GB
-  Memory usage:            20%
-  Swap usage:              0%
-  Processes:               111
-  Users logged in:         0
-  IPv4 address for enp0s3: 10.0.2.15
-  IPv6 address for enp0s3: fd17:625c:f037:2:44:a4ff:fe14:4581
-
-
-Expanded Security Maintenance for Applications is not enabled.
-
-0 updates can be applied immediately.
-
-Enable ESM Apps to receive additional future security updates.
-See https://ubuntu.com/esm or run: sudo pro status
-
+ ...
 
 The list of available updates is more than a week old.
 To check for new updates run: sudo apt update
