@@ -39,7 +39,7 @@
   Хост машина - OS Windows 10 c Vagrant 2.4.9, VirtualBox 7.0.10, ВМ - образ OS Ubuntu 22.04
 
 # Команды и описание действий
-
+```
 Microsoft Windows [Version 10.0.19045.6456]
 (c) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
 
@@ -332,8 +332,10 @@ VBoxHeadless.exe              8320 Console                    2    72 720 КБ
 E:\Vagrant>
 E:\Vagrant>
 E:\Vagrant>
-
+```
 # Протокол работы
+
+```
 Microsoft Windows [Version 10.0.19045.6456]
 (c) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
 
@@ -626,3 +628,4 @@ VBoxHeadless.exe              8320 Console                    2    72 720 КБ
 E:\Vagrant>
 E:\Vagrant>
 E:\Vagrant>
+```
