@@ -60,8 +60,10 @@ E:\Vagrant>dir
                1 файлов          2 044 байт
                3 папок  198 031 798 272 байт свободно
 ```
-> создал папку e:\vagrant, в ней создал файл vagrntfile (файл в приложении с комментариями )
+> <span style="color: blue;">создал папку e:\vagrant, в ней создал файл vagrntfile (файл в приложении с комментариями ) </span>
 ```
+<span style="color: red;">этот фрагмент — красный</span>
+<font color="red"> Привет </font>
 
 E:\Vagrant>vagrant up
 Bringing machine 'default' up with 'virtualbox' provider...
